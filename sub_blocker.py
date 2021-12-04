@@ -18,7 +18,7 @@ subList = os.getenv("SUBREDDITS").split(",")
 def getSubmissions(sub):
     """returns all submissions to a sub in the last year"""
     submissions = []
-    for submission in list(reddit.subreddit(sub).top("week", limit=None)):
+    for submission in list(reddit.subreddit(sub).top("year", limit=None)):
         submissions.append(submission)
     return submissions
 
@@ -33,7 +33,7 @@ def getComments(sub):
     Returns a list of every comment on the specified subreddit in the last year
     """
     comments = []
-    for submission in list(reddit.subreddit(sub).top("week", limit=None)):
+    for submission in list(reddit.subreddit(sub).top("year", limit=None)):
         for comment in list(submission.comments):
             comments.append(comment)
     return comments
@@ -111,5 +111,5 @@ def unblockAll():
 
 if __name__ == "__main__":
     #unblockAll()
-    subBlocker2(subList)
+    subBlocker(subList)
     #print(getAuthors(getComments("asktankies")))
