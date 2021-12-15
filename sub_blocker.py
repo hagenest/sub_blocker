@@ -33,7 +33,7 @@ def getComments(sub):
     Returns a list of every comment on the specified subreddit in the last year
     """
     comments = []
-    for submission in list(reddit.subreddit(sub).top("year", limit=None)):
+    for submission in list(reddit.subreddit(sub).top("month", limit=None)):
         for comment in list(submission.comments):
             comments.append(comment)
     return comments
@@ -41,8 +41,9 @@ def getComments(sub):
 def getAuthors(comments):
     authors = []
     for comment in comments:
-        if comment.author != None:
-            authors.append(comment.author.name)
+        if hasattr(comment, "author"):
+            if hasattr(comment.author, "name"):
+                authors.append(comment.author.name)
     return authors
 
     
@@ -87,9 +88,9 @@ def blockUsers(list):
 def subBlocker(subList):
     for sub in subList:
         activeUsers = getAuthors(getComments(sub))
-        activeUsers = countOccurences(activeUsers)
-        activeUsers = dropUsers(activeUsers, 5)
-        activeUsers = convertToList(activeUsers)
+        #activeUsers = countOccurences(activeUsers)
+        #activeUsers = dropUsers(activeUsers, 5)
+        #activeUsers = convertToList(activeUsers)
         blockUsers(activeUsers)
         print(activeUsers)
 
