@@ -1,4 +1,7 @@
 # sub blocker
+
+This python script blocks users who are active in a subreddit. Great if you're part of a community who has a vocal and annoying sub-community :)
+
 ## install dependecies
 ```
 praw, python-dotenv (dunno exact name?)
